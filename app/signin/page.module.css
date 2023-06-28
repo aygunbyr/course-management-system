@@ -1,0 +1,147 @@
+.page {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(71.17deg, #feaf00 19.35%, #f8d442 90.12%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContainer {
+  background-color: white;
+  width: 475px;
+  height: 550px;
+  box-shadow: 2px 5px 10px 0px #0000001a;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: inline-block;
+  width: 334px;
+  margin-top: 44px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 39px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: #000000;
+  border-left: 6px solid #f8d442;
+}
+
+.title-secondary {
+  display: inline-block;
+  width: 87px;
+  margin-top: 43px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #000000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0em;
+  line-height: 27px;
+  text-align: left;
+}
+
+.description {
+  display: inline-block;
+  margin-top: 9px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #6c6c6c;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0em;
+  line-height: 17px;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  width: 415px;
+  height: 71px;
+  /* top: 404px
+left: 513px */
+  border-radius: 4px;
+  border: 1px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-control-label {
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #6c6c6c;
+}
+
+.form-control-input {
+  width: 415px;
+  height: 44px;
+  margin-top: 10px;
+  /* top: 522px
+left: 513px */
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding: 15px;
+}
+
+.form-control-input::placeholder {
+  color: #cdcdcd;
+}
+
+.signinButton {
+  display: block;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 415px;
+  height: 44px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: #feaf00;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #ffffff;
+}
+
+.resetPassword {
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  display: inline-block;
+  margin-top: 27px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.resetPassword a {
+  color: #feaf00;
+  font-weight: 600;
+}
