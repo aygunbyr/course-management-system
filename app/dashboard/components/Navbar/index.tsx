@@ -41,7 +41,7 @@ function Navbar() {
             <Link
               className={styles['nav-item-link']}
               onClick={() => setCurrentItem('home')}
-              href="#"
+              href="/dashboard"
             >
               <div className={styles['nav-icon-container']}>
                 <Image

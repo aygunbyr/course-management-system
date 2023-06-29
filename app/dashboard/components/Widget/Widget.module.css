@@ -1,0 +1,58 @@
+.widget {
+  display: flex;
+  flex-direction: column;
+  width: 255px;
+  height: 157px;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.lightblue {
+  background: #f0f9ff;
+}
+
+.lightpink {
+  background: #fef6fb;
+}
+
+.lightyellow {
+  background: #fefbec;
+}
+
+.orange {
+  background: linear-gradient(110.42deg, #feaf00 18.27%, #f8d442 91.84%);
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  height: 35px;
+}
+
+.title {
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-top: 18px;
+}
+
+.title-color {
+  color: #6c6c6c;
+}
+
+.title-color-white {
+  color: #ffffff;
+}
+
+.count {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 37px;
+  letter-spacing: 0em;
+  text-align: right;
+  margin-top: 10px;
+}
