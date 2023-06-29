@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import styles from './page.module.css'
+import styles from './Signin.module.css'
 import Link from 'next/link'
 
 function Signin() {
@@ -16,7 +16,9 @@ function Signin() {
         </span>
         <form onSubmit={handleSubmit}>
           <div className={styles['form-control']}>
-            <label className={styles['form-control-label']}>Email</label>
+            <label className={styles['form-control-label']} htmlFor="email">
+              Email
+            </label>
             <input
               className={styles['form-control-input']}
               name="email"
@@ -25,7 +27,9 @@ function Signin() {
             />
           </div>
           <div className={styles['form-control']}>
-            <label className={styles['form-control-label']}>Password</label>
+            <label className={styles['form-control-label']} htmlFor="password">
+              Password
+            </label>
             <input
               className={styles['form-control-input']}
               name="password"

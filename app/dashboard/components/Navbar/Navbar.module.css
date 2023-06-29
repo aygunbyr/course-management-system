@@ -1,0 +1,129 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  background: #f2eae1;
+  float: left;
+}
+
+.navbar-title {
+  display: inline-block;
+  width: 213px;
+  margin-top: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  border-left: 4px solid #f8d442;
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: right;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  width: 128px;
+  height: 196px;
+  margin-top: 54px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.avatar {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.admin-name {
+  display: inline-block;
+  margin-top: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #000000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.admin-title {
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #feaf00;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 193px;
+  height: 497px;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navlinks {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  width: 193px;
+  height: 41px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 4px;
+  padding-top: 11px;
+  padding-bottom: 13px;
+  padding-left: 40px;
+}
+
+.nav-item-text {
+  margin-left: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.nav-item-link {
+  color: #000000;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item-active {
+  background: #feaf00;
+}
+
+.nav-icon-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 17px;
+}
+
+.nav-icon-container-logout {
+  margin-left: 23px;
+}
