@@ -1,0 +1,84 @@
+.table {
+  width: 1110px;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #000000;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.topbar {
+  width: 1110px;
+  height: 68px;
+  border-bottom: 1px solid #e5e5e5;
+  /* border: 1px solid red; */
+}
+
+.search {
+  display: block;
+  position: absolute;
+  width: 212px;
+  height: 37px;
+  top: 75px;
+  left: 975px;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  background: #ffffff;
+}
+
+.searchInput {
+  position: relative;
+  width: 160px;
+  height: 17px;
+  top: 9px;
+  left: 13px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  border: none;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: #c4c4c4;
+}
+
+.searchIcon {
+  position: relative;
+  top: 11px;
+  left: 24px;
+  width: 14px;
+  height: 14px;
+  color: #c4c4c4;
+}
+
+.btn {
+  width: 199px;
+  height: 44px;
+  position: absolute;
+  top: 72px;
+  left: 1211px;
+  border-radius: 4px;
+  border: none;
+  background: #feaf00;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: center;
+}
