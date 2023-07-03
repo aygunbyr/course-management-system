@@ -12,10 +12,61 @@ import FileChartLineIcon from '@/public/assets/icons/file-chart-line.svg'
 import SlidersVSquareIcon from '@/public/assets/icons/sliders-v-square.svg'
 import LogoutIcon from '@/public/assets/icons/logout.svg'
 
+type NavLinkProps = {
+  href: string
+  isActive: boolean
+  children: React.ReactNode
+}
+
+type NavItemProps = {
+  href: string
+  isActive: boolean
+  iconSrc: any
+  iconWidth: number
+  iconHeight: number
+  text: string
+}
+
+const NavLink = ({ href, isActive, children }: NavLinkProps) => {
+  const activeClass = isActive ? styles['nav-item-active'] : ''
+
+  return (
+    <div className={`${styles['nav-item']} ${activeClass}`}>
+      <Link className={styles['nav-item-link']} href={href}>
+        {children}
+      </Link>
+    </div>
+  )
+}
+
+const NavItem = ({
+  href,
+  isActive,
+  iconSrc,
+  iconWidth,
+  iconHeight,
+  text,
+}: NavItemProps) => {
+  const activeClass = isActive ? styles['nav-item-active'] : ''
+
+  return (
+    <NavLink href={href} isActive={isActive}>
+      <div className={styles['nav-icon-container']}>
+        <Image
+          src={iconSrc}
+          width={iconWidth}
+          height={iconHeight}
+          alt={`${text} Icon`}
+          aria-label={`${text} Icon`}
+        />
+      </div>
+      <span className={styles['nav-item-text']}>{text}</span>
+    </NavLink>
+  )
+}
+
 function Navbar() {
   const pathname = usePathname()
-
-  console.log('Pathname = ' + pathname)
 
   return (
     <div className={styles.navbar}>
@@ -34,132 +85,57 @@ function Navbar() {
       </div>
       <div className={styles['nav-container']}>
         <div className={styles.navlinks}>
-          <div
-            className={
-              pathname === '/dashboard'
-                ? `${styles['nav-item']} ${styles['nav-item-active']}`
-                : styles['nav-item']
-            }
-          >
-            <Link className={styles['nav-item-link']} href="/dashboard">
-              <div className={styles['nav-icon-container']}>
-                <Image
-                  src={HomeIcon}
-                  width={19}
-                  height={17}
-                  alt="Home Icon"
-                  aria-label="Home Icon"
-                />
-              </div>
-              <span className={styles['nav-item-text']}>Home</span>
-            </Link>
-          </div>
-          <div
-            className={
-              pathname === '/dashboard/course'
-                ? `${styles['nav-item']} ${styles['nav-item-active']}`
-                : styles['nav-item']
-            }
-          >
-            <Link className={styles['nav-item-link']} href="#">
-              <div className={styles['nav-icon-container']}>
-                <Image
-                  src={BookmarkIcon}
-                  width={12}
-                  height={15}
-                  alt="Course Icon"
-                  aria-label="Course Icon"
-                />
-              </div>
-              <span className={styles['nav-item-text']}>Course</span>
-            </Link>
-          </div>
-          <div
-            className={
-              pathname === '/dashboard/students'
-                ? `${styles['nav-item']} ${styles['nav-item-active']}`
-                : styles['nav-item']
-            }
-          >
-            <Link
-              className={styles['nav-item-link']}
-              href="/dashboard/students"
-            >
-              <div className={styles['nav-icon-container']}>
-                <Image
-                  src={GraduationCapIcon}
-                  width={20}
-                  height={16}
-                  alt="Students Icon"
-                  aria-label="Students Icon"
-                />
-              </div>
-              <span className={styles['nav-item-text']}>Students</span>
-            </Link>
-          </div>
-          <div
-            className={
-              pathname === '/dashboard/payment'
-                ? `${styles['nav-item']} ${styles['nav-item-active']}`
-                : styles['nav-item']
-            }
-          >
-            <Link className={styles['nav-item-link']} href="#">
-              <div className={styles['nav-icon-container']}>
-                <Image
-                  src={UsdSquareIcon}
-                  width={15}
-                  height={17}
-                  alt="Payment Icon"
-                  aria-label="Payment Icon"
-                />
-              </div>
-              <span className={styles['nav-item-text']}>Payment</span>
-            </Link>
-          </div>
-          <div
-            className={
-              pathname === '/dashboard/report'
-                ? `${styles['nav-item']} ${styles['nav-item-active']}`
-                : styles['nav-item']
-            }
-          >
-            <Link className={styles['nav-item-link']} href="#">
-              <div className={styles['nav-icon-container']}>
-                <Image
-                  src={FileChartLineIcon}
-                  width={13}
-                  height={17}
-                  alt="Report Icon"
-                  aria-label="Report Icon"
-                />
-              </div>
-              <span className={styles['nav-item-text']}>Report</span>
-            </Link>
-          </div>
-          <div
-            className={
-              pathname === '/dashboard/settings'
-                ? `${styles['nav-item']} ${styles['nav-item-active']}`
-                : styles['nav-item']
-            }
-          >
-            <Link className={styles['nav-item-link']} href="#">
-              <div className={styles['nav-icon-container']}>
-                <Image
-                  src={SlidersVSquareIcon}
-                  width={15}
-                  height={17}
-                  alt="Settings Icon"
-                  aria-label="Settings Icon"
-                />
-              </div>
-              <span className={styles['nav-item-text']}>Settings</span>
-            </Link>
-          </div>
+          <NavItem
+            href="/dashboard"
+            isActive={pathname === '/dashboard'}
+            iconSrc={HomeIcon}
+            iconWidth={19}
+            iconHeight={17}
+            text="Home"
+          />
+          <NavItem
+            href="/dashboard/course"
+            isActive={pathname === '/dashboard/course'}
+            iconSrc={BookmarkIcon}
+            iconWidth={12}
+            iconHeight={15}
+            text="Course"
+          />
+          <NavItem
+            href="/dashboard/students"
+            isActive={pathname === '/dashboard/students'}
+            iconSrc={GraduationCapIcon}
+            iconWidth={20}
+            iconHeight={16}
+            text="Students"
+          />
+          <NavItem
+            href="/dashboard/payment"
+            isActive={pathname === '/dashboard/payment'}
+            iconSrc={UsdSquareIcon}
+            iconWidth={15}
+            iconHeight={17}
+            text="Payment"
+          />
+          <NavItem
+            href="/dashboard/report"
+            isActive={pathname === '/dashboard/report'}
+            iconSrc={FileChartLineIcon}
+            iconWidth={13}
+            iconHeight={17}
+            text="Report"
+          />
+          <NavItem
+            href="/dashboard/settings"
+            isActive={pathname === '/dashboard/settings'}
+            iconSrc={SlidersVSquareIcon}
+            iconWidth={15}
+            iconHeight={17}
+            text="Settings"
+          />
         </div>
         <div className={styles['nav-item']}>
-          <Link className={styles['nav-item-link']} href="/signin">
+          <NavLink href="/signin" isActive={false}>
             <span className={styles['nav-item-text']}>Logout</span>
             <div
               className={`${styles['nav-icon-container']} ${styles['nav-icon-container-logout']}`}
@@ -172,7 +148,7 @@ function Navbar() {
                 aria-label="Logout Icon"
               />
             </div>
-          </Link>
+          </NavLink>
         </div>
       </div>
     </div>
