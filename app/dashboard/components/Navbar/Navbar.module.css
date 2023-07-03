@@ -1,5 +1,7 @@
 .navbar {
   display: flex;
+  position: fixed;
+  height: 100%;
   flex-direction: column;
   width: 270px;
   background: #f2eae1;
