@@ -29,10 +29,11 @@ type NavItemProps = {
 
 const NavLink = ({ href, isActive, children }: NavLinkProps) => {
   const activeClass = isActive ? styles['nav-item-active'] : ''
+  const logoutClass = href === '/signin' ? styles['nav-item-logout'] : ''
 
   return (
     <div className={`${styles['nav-item']} ${activeClass}`}>
-      <Link className={styles['nav-item-link']} href={href}>
+      <Link className={`${styles['nav-item-link']} ${logoutClass}`} href={href}>
         {children}
       </Link>
     </div>
@@ -47,8 +48,6 @@ const NavItem = ({
   iconHeight,
   text,
 }: NavItemProps) => {
-  const activeClass = isActive ? styles['nav-item-active'] : ''
-
   return (
     <NavLink href={href} isActive={isActive}>
       <div className={styles['nav-icon-container']}>
@@ -94,7 +93,7 @@ function Navbar() {
             text="Home"
           />
           <NavItem
-            href="/dashboard/course"
+            href="#"
             isActive={pathname === '/dashboard/course'}
             iconSrc={BookmarkIcon}
             iconWidth={12}
@@ -110,7 +109,7 @@ function Navbar() {
             text="Students"
           />
           <NavItem
-            href="/dashboard/payment"
+            href="#"
             isActive={pathname === '/dashboard/payment'}
             iconSrc={UsdSquareIcon}
             iconWidth={15}
@@ -118,7 +117,7 @@ function Navbar() {
             text="Payment"
           />
           <NavItem
-            href="/dashboard/report"
+            href="#"
             isActive={pathname === '/dashboard/report'}
             iconSrc={FileChartLineIcon}
             iconWidth={13}
@@ -126,7 +125,7 @@ function Navbar() {
             text="Report"
           />
           <NavItem
-            href="/dashboard/settings"
+            href="#"
             isActive={pathname === '/dashboard/settings'}
             iconSrc={SlidersVSquareIcon}
             iconWidth={15}
@@ -134,25 +133,17 @@ function Navbar() {
             text="Settings"
           />
         </div>
-        <div className={styles['nav-item']}>
-          <NavLink href="/signin" isActive={false}>
-            <span className={styles['nav-item-text']}>Logout</span>
-            <div
-              className={`${styles['nav-icon-container']} ${styles['nav-icon-container-logout']}`}
-            >
-              <Image
-                src={LogoutIcon}
-                width={17}
-                height={13}
-                alt="Logout Icon"
-                aria-label="Logout Icon"
-              />
-            </div>
-          </NavLink>
-        </div>
+        <NavItem
+          href="/signin"
+          isActive={false}
+          iconSrc={LogoutIcon}
+          iconWidth={15}
+          iconHeight={17}
+          text="Logout"
+        />
       </div>
     </div>
   )
 }
 
-export default Navbar
+export default React.memo(Navbar)
