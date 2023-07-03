@@ -1,7 +1,8 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import styles from './Navbar.module.css'
 import HomeIcon from '@/public/assets/icons/home-lg-alt.svg'
 import BookmarkIcon from '@/public/assets/icons/bookmark.svg'
@@ -12,7 +13,9 @@ import SlidersVSquareIcon from '@/public/assets/icons/sliders-v-square.svg'
 import LogoutIcon from '@/public/assets/icons/logout.svg'
 
 function Navbar() {
-  const [currentItem, setCurrentItem] = useState('home')
+  const pathname = usePathname()
+
+  console.log('Pathname = ' + pathname)
 
   return (
     <div className={styles.navbar}>
@@ -33,16 +36,12 @@ function Navbar() {
         <div className={styles.navlinks}>
           <div
             className={
-              currentItem === 'home'
+              pathname === '/dashboard'
                 ? `${styles['nav-item']} ${styles['nav-item-active']}`
                 : styles['nav-item']
             }
           >
-            <Link
-              className={styles['nav-item-link']}
-              onClick={() => setCurrentItem('home')}
-              href="/dashboard"
-            >
+            <Link className={styles['nav-item-link']} href="/dashboard">
               <div className={styles['nav-icon-container']}>
                 <Image
                   src={HomeIcon}
@@ -57,16 +56,12 @@ function Navbar() {
           </div>
           <div
             className={
-              currentItem === 'course'
+              pathname === '/dashboard/course'
                 ? `${styles['nav-item']} ${styles['nav-item-active']}`
                 : styles['nav-item']
             }
           >
-            <Link
-              className={styles['nav-item-link']}
-              onClick={() => setCurrentItem('course')}
-              href="#"
-            >
+            <Link className={styles['nav-item-link']} href="#">
               <div className={styles['nav-icon-container']}>
                 <Image
                   src={BookmarkIcon}
@@ -81,15 +76,14 @@ function Navbar() {
           </div>
           <div
             className={
-              currentItem === 'students'
+              pathname === '/dashboard/students'
                 ? `${styles['nav-item']} ${styles['nav-item-active']}`
                 : styles['nav-item']
             }
           >
             <Link
               className={styles['nav-item-link']}
-              onClick={() => setCurrentItem('students')}
-              href="#"
+              href="/dashboard/students"
             >
               <div className={styles['nav-icon-container']}>
                 <Image
@@ -105,16 +99,12 @@ function Navbar() {
           </div>
           <div
             className={
-              currentItem === 'payment'
+              pathname === '/dashboard/payment'
                 ? `${styles['nav-item']} ${styles['nav-item-active']}`
                 : styles['nav-item']
             }
           >
-            <Link
-              className={styles['nav-item-link']}
-              onClick={() => setCurrentItem('payment')}
-              href="#"
-            >
+            <Link className={styles['nav-item-link']} href="#">
               <div className={styles['nav-icon-container']}>
                 <Image
                   src={UsdSquareIcon}
@@ -129,16 +119,12 @@ function Navbar() {
           </div>
           <div
             className={
-              currentItem === 'report'
+              pathname === '/dashboard/report'
                 ? `${styles['nav-item']} ${styles['nav-item-active']}`
                 : styles['nav-item']
             }
           >
-            <Link
-              className={styles['nav-item-link']}
-              onClick={() => setCurrentItem('report')}
-              href="#"
-            >
+            <Link className={styles['nav-item-link']} href="#">
               <div className={styles['nav-icon-container']}>
                 <Image
                   src={FileChartLineIcon}
@@ -153,16 +139,12 @@ function Navbar() {
           </div>
           <div
             className={
-              currentItem === 'settings'
+              pathname === '/dashboard/settings'
                 ? `${styles['nav-item']} ${styles['nav-item-active']}`
                 : styles['nav-item']
             }
           >
-            <Link
-              className={styles['nav-item-link']}
-              onClick={() => setCurrentItem('settings')}
-              href="#"
-            >
+            <Link className={styles['nav-item-link']} href="#">
               <div className={styles['nav-icon-container']}>
                 <Image
                   src={SlidersVSquareIcon}
