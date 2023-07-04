@@ -9,4 +9,5 @@
   height: 60px;
   padding-left: 30px;
   padding-right: 51px;
+  z-index: 1;
 }
