@@ -69,6 +69,7 @@ function Table({ title, cols, data }: TableProps) {
   const [numPages, setNumPages] = useState<number>(1)
   const [startIndex, setStartIndex] = useState<number>(0)
   const [endIndex, setEndIndex] = useState<number>(startIndex + Number(rows))
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
 
   // Pagination
   useEffect(() => {
@@ -136,8 +137,24 @@ function Table({ title, cols, data }: TableProps) {
     }
   }
 
+  const handleAddNewStudent = () => {
+    setIsAddModalOpen(true)
+  }
+
+  const handleCloseAddModal = () => {
+    setIsAddModalOpen(false)
+  }
+
   return (
     <section className={styles.container}>
+      {isAddModalOpen && (
+        <div className={styles.modalBackground}>
+          <Modal onClose={handleCloseAddModal}>
+            <h2>Add New Student</h2>
+            <p>This is the modal content.</p>
+          </Modal>
+        </div>
+      )}
       <div className={styles.topbar}>
         <h1 className={styles.title}>{title}</h1>
         <div className={styles.search}>
@@ -158,10 +175,7 @@ function Table({ title, cols, data }: TableProps) {
             />
           </span>
         </div>
-        <button
-          className={styles.btn}
-          onClick={() => alert('You have clicked button!')}
-        >
+        <button className={styles.btn} onClick={handleAddNewStudent}>
           ADD NEW STUDENT
         </button>
       </div>
@@ -229,6 +243,22 @@ function Table({ title, cols, data }: TableProps) {
         </tfoot>
       </table>
     </section>
+  )
+}
+
+type ModalProps = {
+  children: React.ReactNode
+  onClose: () => void
+}
+
+function Modal({ children, onClose }: ModalProps) {
+  return (
+    <div className={styles.modal}>
+      <div className={styles['modal-content']}>
+        {children}
+        <button onClick={onClose}>Close</button>
+      </div>
+    </div>
   )
 }
 
