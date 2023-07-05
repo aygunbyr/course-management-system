@@ -1,4 +1,4 @@
-type Address = {
+interface Address {
   address: string
   city: string
   coordinates: {
@@ -9,7 +9,7 @@ type Address = {
   state: string
 }
 
-export type User = {
+export interface User {
   id: number
   firstName: string
   lastName: string

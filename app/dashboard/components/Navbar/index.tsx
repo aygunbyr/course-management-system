@@ -82,7 +82,7 @@ function Navbar() {
         <span className={styles['admin-name']}>John Doe</span>
         <span className={styles['admin-title']}>Admin</span>
       </div>
-      <div className={styles['nav-container']}>
+      <nav className={styles['nav-container']}>
         <div className={styles.navlinks}>
           <NavItem
             href="/dashboard"
@@ -141,7 +141,7 @@ function Navbar() {
           iconHeight={17}
           text="Logout"
         />
-      </div>
+      </nav>
     </div>
   )
 }

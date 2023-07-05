@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from './Table.module.css'
 import SearchIcon from '@/public/assets/icons/search.svg'
 import EditIcon from '@/public/assets/icons/edit.svg'
@@ -7,6 +8,7 @@ import TrashIcon from '@/public/assets/icons/trash.svg'
 import ArrowLeftIcon from '@/public/assets/icons/arrow-left.svg'
 import ArrowRightIcon from '@/public/assets/icons/arrow-right.svg'
 import { User } from '@/types/user'
+import Form from '../Form'
 
 type TableRowProps = {
   rowData: User
@@ -58,9 +60,10 @@ type TableProps = {
   title: string
   cols: string[]
   data: User[]
+  setData: React.Dispatch<React.SetStateAction<User[]>>
 }
 
-function Table({ title, cols, data }: TableProps) {
+function Table({ title, cols, data, setData }: TableProps) {
   const [searchText, setSearchText] = useState<string>('')
   const [page, setPage] = useState<number>(1)
   const [rows, setRows] = useState<string>('6')
@@ -132,8 +135,9 @@ function Table({ title, cols, data }: TableProps) {
 
   const handleDelete = (id: number) => {
     if (window.confirm(`Are you sure you want to delete this student?`)) {
-      const newFiltered = filtered.filter((item) => item.id !== id)
-      setFiltered(newFiltered)
+      const newData = data.filter((item) => item.id !== id)
+      setData(newData)
+      setPage(1)
     }
   }
 
@@ -150,8 +154,12 @@ function Table({ title, cols, data }: TableProps) {
       {isAddModalOpen && (
         <div className={styles.modalBackground}>
           <Modal onClose={handleCloseAddModal}>
-            <h2>Add New Student</h2>
-            <p>This is the modal content.</p>
+            <h2 className={styles.title}>Add New Student</h2>
+            <Form
+              data={data}
+              setData={setData}
+              handleCloseModal={handleCloseAddModal}
+            />
           </Modal>
         </div>
       )}
@@ -254,9 +262,11 @@ type ModalProps = {
 function Modal({ children, onClose }: ModalProps) {
   return (
     <div className={styles.modal}>
-      <div className={styles['modal-content']}>
+      <div>
         {children}
-        <button onClick={onClose}>Close</button>
+        <button className={styles.closeModal} onClick={onClose}>
+          Close
+        </button>
       </div>
     </div>
   )
