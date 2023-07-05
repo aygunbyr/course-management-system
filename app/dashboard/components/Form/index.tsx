@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Form.module.css'
 import { User } from '@/types/user'
 
@@ -6,15 +6,28 @@ type FormProps = {
   data: User[]
   setData: React.Dispatch<React.SetStateAction<User[]>>
   handleCloseModal: () => void
+  mode: 'add' | 'edit'
+  rowData?: User | null
 }
 
-function Form({ data, setData, handleCloseModal }: FormProps) {
+function Form({ data, setData, handleCloseModal, mode, rowData }: FormProps) {
   const [firstName, setFirstName] = useState<string>('')
   const [lastName, setLastName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [phone, setPhone] = useState<string>('')
   const [domain, setDomain] = useState<string>('')
   const [companyName, setCompanyName] = useState<string>('')
+
+  useEffect(() => {
+    if (mode === 'edit') {
+      setFirstName(rowData?.firstName || '')
+      setLastName(rowData?.lastName || '')
+      setEmail(rowData?.email || '')
+      setPhone(rowData?.phone || '')
+      setDomain(rowData?.domain || '')
+      setCompanyName(rowData?.company.name || '')
+    }
+  }, [rowData, mode])
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault()
@@ -26,49 +39,30 @@ function Form({ data, setData, handleCloseModal }: FormProps) {
     if (domain === '') return
     if (companyName === '') return
 
-    const newStudent: User = {
-      id: Math.floor(Math.random() * 1000000 + 1),
-      firstName,
-      lastName,
-      maidenName: '',
-      age: 0,
-      gender: '',
-      email,
-      phone,
-      username: '',
-      password: '',
-      birthDate: '',
-      image: '/assets/profile.png',
-      bloodGroup: '',
-      height: 0,
-      weight: 0,
-      eyeColor: '',
-      hair: {
-        color: '',
-        type: '',
-      },
-      domain,
-      ip: '',
-      address: {
-        address: '',
-        city: '',
-        coordinates: {
-          lat: 0,
-          lng: 0,
+    if (mode === 'add') {
+      const newStudent: User = {
+        id: Math.floor(Math.random() * 1000000 + 1),
+        firstName,
+        lastName,
+        maidenName: '',
+        age: 0,
+        gender: '',
+        email,
+        phone,
+        username: '',
+        password: '',
+        birthDate: '',
+        image: '/assets/profile.png',
+        bloodGroup: '',
+        height: 0,
+        weight: 0,
+        eyeColor: '',
+        hair: {
+          color: '',
+          type: '',
         },
-        postalCode: '',
-        state: '',
-      },
-      macAddress: '',
-      university: '',
-      bank: {
-        cardExpire: '',
-        cardNumber: '',
-        cardType: '',
-        currency: '',
-        iban: '',
-      },
-      company: {
+        domain,
+        ip: '',
         address: {
           address: '',
           city: '',
@@ -79,17 +73,49 @@ function Form({ data, setData, handleCloseModal }: FormProps) {
           postalCode: '',
           state: '',
         },
-        department: '',
-        name: companyName,
-        title: '',
-      },
-      ein: '',
-      ssn: '',
-      userAgent: '',
+        macAddress: '',
+        university: '',
+        bank: {
+          cardExpire: '',
+          cardNumber: '',
+          cardType: '',
+          currency: '',
+          iban: '',
+        },
+        company: {
+          address: {
+            address: '',
+            city: '',
+            coordinates: {
+              lat: 0,
+              lng: 0,
+            },
+            postalCode: '',
+            state: '',
+          },
+          department: '',
+          name: companyName,
+          title: '',
+        },
+        ein: '',
+        ssn: '',
+        userAgent: '',
+      }
+
+      const newData = [...data, newStudent]
+      setData(newData)
     }
 
-    const newData = [...data, newStudent]
-    setData(newData)
+    if (mode === 'edit' && rowData !== undefined && rowData !== null) {
+      const index = data.findIndex((student) => student.id === rowData.id)
+
+      data[index].firstName = firstName
+      data[index].lastName = lastName
+      data[index].email = email
+      data[index].phone = phone
+      data[index].domain = domain
+      data[index].company.name = companyName
+    }
 
     handleCloseModal()
   }
@@ -192,7 +218,11 @@ function Form({ data, setData, handleCloseModal }: FormProps) {
           <p style={{ alignContent: 'center' }}>All fields are required.</p>
         </div>
         <button className={styles.button} type="submit">
-          ADD STUDENT
+          {mode === 'add'
+            ? 'ADD STUDENT'
+            : mode === 'edit'
+            ? 'EDIT STUDENT'
+            : null}
         </button>
       </form>
     </div>

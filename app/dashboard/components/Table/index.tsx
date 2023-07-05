@@ -12,10 +12,11 @@ import Form from '../Form'
 
 type TableRowProps = {
   rowData: User
+  handleEditStudent: () => void
   handleDelete: (id: number) => void
 }
 
-function TableRow({ rowData, handleDelete }: TableRowProps) {
+function TableRow({ rowData, handleEditStudent, handleDelete }: TableRowProps) {
   return (
     <tr className={styles['table-row']}>
       <td>
@@ -37,6 +38,7 @@ function TableRow({ rowData, handleDelete }: TableRowProps) {
       <td>
         <Image
           src={EditIcon}
+          onClick={handleEditStudent}
           width={19}
           height={19}
           alt="Edit"
@@ -73,6 +75,8 @@ function Table({ title, cols, data, setData }: TableProps) {
   const [startIndex, setStartIndex] = useState<number>(0)
   const [endIndex, setEndIndex] = useState<number>(startIndex + Number(rows))
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
+  const [isEditModalOpen, setEditModalOpen] = useState(false)
+  const [rowData, setRowData] = useState<User | null>(null)
 
   // Pagination
   useEffect(() => {
@@ -149,6 +153,15 @@ function Table({ title, cols, data, setData }: TableProps) {
     setIsAddModalOpen(false)
   }
 
+  const handleEditStudent = (rowData: User) => {
+    setRowData(rowData)
+    setEditModalOpen(true)
+  }
+
+  const handleCloseEditModal = () => {
+    setEditModalOpen(false)
+  }
+
   return (
     <section className={styles.container}>
       {isAddModalOpen && (
@@ -159,6 +172,21 @@ function Table({ title, cols, data, setData }: TableProps) {
               data={data}
               setData={setData}
               handleCloseModal={handleCloseAddModal}
+              mode="add"
+            />
+          </Modal>
+        </div>
+      )}
+      {isEditModalOpen && (
+        <div className={styles.modalBackground}>
+          <Modal onClose={handleCloseEditModal}>
+            <h2 className={styles.title}>Edit Student</h2>
+            <Form
+              data={data}
+              setData={setData}
+              handleCloseModal={handleCloseEditModal}
+              mode="edit"
+              rowData={rowData}
             />
           </Modal>
         </div>
@@ -201,6 +229,7 @@ function Table({ title, cols, data, setData }: TableProps) {
               <TableRow
                 key={rowData.id}
                 rowData={rowData}
+                handleEditStudent={() => handleEditStudent(rowData)}
                 handleDelete={handleDelete}
               />
             ))}
@@ -265,7 +294,7 @@ function Modal({ children, onClose }: ModalProps) {
       <div>
         {children}
         <button className={styles.closeModal} onClick={onClose}>
-          Close
+          CLOSE
         </button>
       </div>
     </div>
