@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import styles from './Table.module.css'
 import SearchIcon from '@/public/assets/icons/search.svg'
 import EditIcon from '@/public/assets/icons/edit.svg'
